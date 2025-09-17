@@ -61,21 +61,28 @@ function setupMobileNav() {
 }
 
 function setupScrollReveal() {
-  // Auto-mark some common elements if not already marked
+  // Marca automaticamente elementi tipici; puoi aggiungere manualmente data-reveal dove vuoi.
   document.querySelectorAll('.card, .hero h1, .hero p, .hero .buttons, .section h1, .section h2, .section p, [data-reveal]')
-    .forEach(el => el.classList.add('reveal'));
+    .forEach(el => {
+      // Se il blocco è media/tiles, usa reveal-scale per più presenza
+      if (el.matches('.tile, .tile__media')) el.classList.add('reveal-scale');
+      else el.classList.add('reveal');
+    });
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
+      const el = entry.target;
       if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        // Optional: unobserve after reveal
-        io.unobserve(entry.target);
+        el.classList.add('visible');
+      } else {
+        // reverse on scroll-up: quando esce dal viewport rimuoviamo .visible
+        el.classList.remove('visible');
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.2, rootMargin: '0px 0px -10% 0px' });
 
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal, .reveal-scale').forEach(el => io.observe(el));
 }
+
 
 document.addEventListener('DOMContentLoaded', loadPartials);

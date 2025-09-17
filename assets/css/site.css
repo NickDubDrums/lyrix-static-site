@@ -4,7 +4,7 @@
 .download-grid{display:grid;gap:16px;grid-template-columns:repeat(3,minmax(0,1fr))}
 
 .nav a:hover{ color:#fff }
-.btn:hover{ filter:brightness(1.05) }
+.btn:hover{ filter:brightness(1.2) }
 .btn-secondary:hover{ background:#151822 }
 
 @media (max-width:900px){.download-grid{grid-template-columns:1fr}}
