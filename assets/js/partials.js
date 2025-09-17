@@ -1,20 +1,81 @@
-
-async function loadPartials(){
+async function loadPartials() {
   const header = document.querySelector('#__header');
   const footer = document.querySelector('#__footer');
-  try{
-    if(header){
-      const h = await fetch('partials/header.html',{cache:'no-cache'});
+
+  // Load header/footer HTML
+  try {
+    if (header) {
+      const h = await fetch('partials/header.html', { cache: 'no-cache' });
       header.innerHTML = await h.text();
     }
-    if(footer){
-      const f = await fetch('partials/footer.html',{cache:'no-cache'});
+    if (footer) {
+      const f = await fetch('partials/footer.html', { cache: 'no-cache' });
       footer.innerHTML = await f.text();
       const yearSpan = document.getElementById('year');
-      if(yearSpan){ yearSpan.textContent = new Date().getFullYear(); }
+      if (yearSpan) yearSpan.textContent = new Date().getFullYear();
     }
-  }catch(e){
+  } catch (e) {
     console.error('Partials load error', e);
   }
+
+  // After header is in the DOM, wire up mobile drawer
+  setupMobileNav();
+  // Setup scroll reveal animations
+  setupScrollReveal();
 }
+
+function setupMobileNav() {
+  const drawer = document.getElementById('mobile-drawer');
+  const overlay = document.getElementById('mobile-overlay');
+  const burger = document.getElementById('hamburger');
+  const closeBtn = document.getElementById('drawer-close');
+
+  if (!drawer || !overlay || !burger) return;
+
+  const open = () => {
+    drawer.classList.add('open');
+    overlay.hidden = false;
+    document.body.classList.add('no-scroll');
+    burger.setAttribute('aria-expanded', 'true');
+    drawer.setAttribute('aria-hidden', 'false');
+  };
+  const close = () => {
+    drawer.classList.remove('open');
+    overlay.hidden = true;
+    document.body.classList.remove('no-scroll');
+    burger.setAttribute('aria-expanded', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
+  };
+
+  burger.addEventListener('click', () => {
+    if (drawer.classList.contains('open')) close();
+    else open();
+  });
+  overlay.addEventListener('click', close);
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+  });
+  // Close on nav click (mobile)
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+}
+
+function setupScrollReveal() {
+  // Auto-mark some common elements if not already marked
+  document.querySelectorAll('.card, .hero h1, .hero p, .hero .buttons, .section h1, .section h2, .section p, [data-reveal]')
+    .forEach(el => el.classList.add('reveal'));
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Optional: unobserve after reveal
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}
+
 document.addEventListener('DOMContentLoaded', loadPartials);
