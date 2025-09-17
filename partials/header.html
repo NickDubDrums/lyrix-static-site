@@ -4,18 +4,19 @@
     <a href="index.html"><img src="images/LyrixLogo.png" alt="Lyrix" width="28" height="28" onerror="this.style.display='none'"/>
 </a>
   </div>
-<!-- Desktop nav -->
-<nav class="nav--desktop">
-  <a href="features.html">Features</a>
-  <a href="how-it-works.html">How it works</a>
-  <a href="plans.html">Plans</a>
-  <a href="download.html">Download</a>
-  <a href="faq.html">FAQ</a>
-  <a href="legal/privacy.html">Privacy</a>
-  <a href="#" class="nav-auth">Sign in</a>
-  <a class="btn" data-lemon-squeezy="true" data-lms-checkout="LMN_SUB_1M">Sign up</a>
-</nav>
+  <!-- Desktop: center nav -->
+  <nav class="nav--desktop nav-center">
+    <a href="features.html">Features</a>
+    <a href="how-it-works.html">How it works</a>
+    <a href="download.html">Download</a>
+    <a href="faq.html">FAQ</a>
   </nav>
+
+  <!-- Desktop: right auth -->
+  <div class="nav-actions">
+    <a href="#" class="nav-auth">Sign in</a>
+    <a class="btn" data-lemon-squeezy="true" data-lms-checkout="LMN_SUB_1M">Sign up</a>
+  </div>
 
   <!-- Hamburger (mobile) -->
   <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
@@ -27,19 +28,19 @@
 <div class="drawer-overlay" id="mobile-overlay" hidden></div>
 <aside class="drawer" id="mobile-drawer" aria-hidden="true">
   <div class="drawer-header">
-    <span class="brand-name"> </span>
+    <span class="brand-name">Lyrix</span>
     <button class="drawer-close" id="drawer-close" aria-label="Close menu">×</button>
   </div>
-<nav class="nav--desktop">
-  <a href="features.html">Features</a>
-  <a href="how-it-works.html">How it works</a>
-  <a href="plans.html">Plans</a>
-  <a href="download.html">Download</a>
-  <a href="faq.html">FAQ</a>
-  <a href="legal/privacy.html">Privacy</a>
-  <a href="#" class="nav-auth">Sign in</a>
-  <a class="btn" data-lemon-squeezy="true" data-lms-checkout="LMN_SUB_1M">Sign up</a>
-</nav>
+  <nav class="nav--mobile">
+    <a href="index.html">Home</a>
+    <a href="features.html">Features</a>
+    <a href="how-it-works.html">How it works</a>
+    <a href="download.html">Download</a>
+    <a href="faq.html">FAQ</a>
+    <hr style="border:0;border-top:1px solid var(--border);margin:8px 0">
+    <a href="#" class="nav-auth">Sign in</a>
+    <a class="btn" data-lemon-squeezy="true" data-lms-checkout="LMN_SUB_1M">Sign up</a>
+  </nav>
 </aside>
 
 <script defer src="https://assets.lemonsqueezy.com/lemon.js" data-lemon-script="true"></script>

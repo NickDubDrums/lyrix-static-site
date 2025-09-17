@@ -84,5 +84,18 @@ function setupScrollReveal() {
   document.querySelectorAll('.reveal, .reveal-scale').forEach(el => io.observe(el));
 }
 
+function setupStickyHeader(){
+  const headerEl = document.querySelector('.header');
+  if(!headerEl) return;
+  const onScroll = () => {
+    if (window.scrollY > 4) headerEl.classList.add('scrolled');
+    else headerEl.classList.remove('scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+
+
 
 document.addEventListener('DOMContentLoaded', loadPartials);

@@ -30,13 +30,12 @@ h1{font-size:40px;margin:0 0 8px}
 h2{font-size:28px;margin:24px 0 8px}
 h3{font-size:20px;margin:0 0 8px}
 p{color:var(--muted)}
-.hero{background: linear-gradient(45deg, #09090c, #101216 ); margin: 3rem 5rem;padding:64px 0; height: 80vh; display: flex; align-items: center; border-radius: 50px;box-shadow: 1px 5px 5px #09090c;}
-.hero--xl { padding: 96px 0 56px; }
-.hero--xl h1 { font-size: 52px; line-height: 1.05; }
-.hero--xl p { max-width: 760px; font-size: 18px; }
+.hero{background: linear-gradient(45deg, #09090c, #101216 ); margin: 8rem 5rem 5rem 5rem;padding:64px 0; height: 80vh; display: flex; align-items: center; border-radius: 50px;box-shadow: 1px 5px 5px #09090c;}
+.hero h1 { font-size: 52px; line-height: 1.05; }
+.hero p { max-width: 760px; font-size: 18px; }
 @media (max-width: 900px){
-  .hero--xl { padding: 72px 0 40px; }
-  .hero--xl h1 { font-size: 38px; }
+  .hero { padding: 72px 0 40px; }
+  .hero h1 { font-size: 38px; }
 }
 
 .section{padding:48px 0}
@@ -130,3 +129,31 @@ p{color:var(--muted)}
 
 
 @media (max-width:900px){.grid-3{grid-template-columns:1fr}}
+
+/* Sticky header fix + shadow on scroll */
+.header{
+  position: fixed; top: 0; width: 100%;
+  background: rgba(11,11,16,.86);
+  backdrop-filter: saturate(1.2) blur(6px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+}
+.header.scrolled{
+  box-shadow: 0 6px 24px rgba(0,0,0,.35);
+}
+
+/* Header layout: brand left, nav center, actions right */
+.header .nav{
+  display:flex; align-items:center; justify-content:space-between; height:64px;
+}
+.nav-center{ display:flex; gap:10px; align-items:center; margin:0 auto; }
+.nav-actions{ display:flex; gap:10px; align-items:center; margin-left:auto; }
+.brand{ display:flex; gap:10px; align-items:center; font-weight:700 }
+.brand-name{ font-weight:700 }
+
+/* Desktop vs mobile */
+@media (max-width: 900px){
+  .nav-center, .nav-actions{ display:none }
+  .hamburger{ display:block }
+}
+/* già esistenti: .hamburger, .drawer, ecc. */
