@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Lyrix — Login</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <link rel="stylesheet" href="assets/css/mobile.css" />
+  <link rel="icon" href="images/favicon.ico" />
+</head>
+<body>
+  <header class="header" id="__header"></header>
+
+  <section class="hero hero--xl">
+    <div class="container">
+      <h1 data-reveal>Access your Lyrix account</h1>
+      <p data-reveal>Sign in to manage your plan and get downloads. New here? Create your account in seconds.</p>
+      <div class="buttons" data-reveal>
+        <a class="btn" href="#" onclick="login('/account.html','login');return false;">Log in</a>
+        <a class="btn-secondary" href="#" onclick="login('/account.html','signup');return false;">Create a new account</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="__footer"></footer>
+
+  <script src="assets/js/partials.js"></script>
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.1/auth0-spa-js.production.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>

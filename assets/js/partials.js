@@ -22,6 +22,8 @@ async function loadPartials() {
   setupMobileNav();
   // Setup scroll reveal animations
   setupScrollReveal();
+
+  document.dispatchEvent(new CustomEvent("partials:loaded")); 
 }
 
 function setupMobileNav() {

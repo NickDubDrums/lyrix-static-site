@@ -1,0 +1,104 @@
+/* =====================================================
+   Lyrix Mobile Stylesheet
+   Purpose: all responsive/mobile overrides live here.
+   Keep theme.css for base/desktop styles (incl. hamburger nav).
+   ===================================================== */
+
+/* Base mobile typographic scale */
+@media (max-width: 900px){
+  :root{
+    --radius: 14px;
+  }
+  html{ font-size: 16px }
+  .container{ padding: 0 16px }
+  h1{ font-size: clamp(1.6rem, 3.5vw + .4rem, 2.2rem); line-height: 1.15; margin: 14px 0 }
+  h2{ font-size: clamp(1.3rem, 2.8vw + .3rem, 1.8rem); line-height: 1.2;  margin: 12px 0 }
+  h3{ font-size: clamp(1.1rem, 2.0vw + .2rem, 1.3rem); line-height: 1.25; margin: 10px 0 }
+  p,li{ font-size: 1rem; line-height: 1.55 }
+  small{ font-size: .9rem }
+  
+  /* Layout */
+  .grid, .row{ display: grid; gap: 16px }
+  .grid-2{ grid-template-columns: 1fr }
+  .grid-3{ grid-template-columns: 1fr }
+  .split{ display:block }
+  .sidebar{ order:2 }
+  .main{ order:1 }
+  
+  /* Cards & blocks */
+  .card{ padding: 14px; border-radius: calc(var(--radius) + 2px) }
+  .hero{ padding: 18px 0 24px;}
+  .hero .actions{ display:flex; gap:10px; flex-wrap:wrap }
+  .section{ padding: 28px 0 }
+  
+  /* Buttons */
+  .btn{ width: 100%; justify-content: center; padding: 12px 16px }
+  .btn.inline{ width:auto }
+  .btn-group{ display:grid; grid-template-columns: 1fr; gap:10px }
+  
+  /* Forms */
+  input[type="text"], input[type="email"], input[type="password"], select, textarea{
+    width:100%;
+    font-size:1rem;
+    padding:12px 14px;
+    border-radius: var(--radius);
+  }
+  label{ font-size:.95rem; margin-bottom:6px; display:block }
+  .form-row{ display:grid; gap:10px }
+  
+  /* Tables become scrollable */
+  .table-wrap{ overflow-x:auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius); border:1px solid var(--border) }
+  table{ min-width: 600px }
+  
+  /* Navbar: keep hamburger behavior from theme.css; tighten spacing */
+  header.site-header{ padding: 10px 0; }
+  .brand{ gap:8px }
+  .nav-auth{ padding: 8px 8px }
+  
+  /* Footer stacks */
+  .footer{ padding:24px 0 }
+  .footer .cols{ display:grid; grid-template-columns: 1fr; gap: 12px }
+  .footer .brand, .footer .social{ justify-content: center }
+  
+  /* Utilities */
+  .hide-mobile{ display:none !important }
+  .show-mobile{ display:revert !important }
+}
+
+/* Small phones */
+@media (max-width: 680px){
+  :root{ --radius: 12px }
+  .container{ padding: 0 14px }
+  .hero .actions .btn{ padding: 12px 14px }
+  .badge{ font-size: .85rem; padding: 6px 8px }
+  .chip{ font-size: .85rem }
+  .card{ padding: 12px }
+  
+  /* Pricing / feature cards stack with spacing */
+  .pricing{ display:grid; grid-template-columns: 1fr; gap:14px }
+  .features{ display:grid; grid-template-columns: 1fr; gap:12px }
+  
+  /* Lists */
+  .bullets li{ padding-left: 28px }
+  .bullets li::before{ left: 0 }
+}
+
+/* Tiny devices */
+@media (max-width: 420px){
+  html{ font-size: 15px }
+  h1{ letter-spacing: -.3px }
+  .container{ padding: 0 12px }
+  .btn{ padding: 11px 12px }
+  .hero{ padding: 16px 0 20px }
+  .card{ padding: 10px }
+  
+  /* Space economy */
+  .brand-name{ font-size: 1.0rem }
+  .nav-auth{ font-size: .95rem }
+}
+
+/* Orientation tweaks */
+@media (orientation: landscape) and (max-height: 480px){
+  .hero{ padding: 12px 0 }
+  .section{ padding: 18px 0 }
+}

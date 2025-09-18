@@ -13,11 +13,17 @@
     <a href="faq.html">FAQ</a>
   </nav>
 
-  <!-- Desktop: right auth -->
-  <div class="nav-actions">
-    <a href="#" class="nav-auth">Sign in</a>
-    <a class="btn" data-lemon-squeezy="true" data-lms-checkout="LMN_SUB_1M">Sign up</a>
-  </div>
+  <!-- Desktop right -->
+<div class="nav-actions">
+  <!-- Mostra solo da NON loggato -->
+  <a class="btn" href="login.html" data-auth="signed-out">Log in</a>
+
+  <!-- Mostra solo da loggato -->
+  <a href="account.html" class="nav-auth" data-auth="signed-in" style="display:none">Account</a>
+  <a class="btn" data-auth="signed-in" href="#" onclick="logout(); return false;" style="display:none">Log out</a>
+</div>
+
+
 
   <!-- Hamburger (mobile) -->
   <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
@@ -39,9 +45,11 @@
     <a href="download.html">Download</a>
     <a href="plans.html">Plans</a>
     <a href="faq.html">FAQ</a>
+
     <hr style="border:0;border-top:1px solid var(--border);margin:8px 0">
-    <a href="#" class="nav-auth">Sign in</a>
-    <a class="btn" data-lemon-squeezy="true" data-lms-checkout="LMN_SUB_1M">Sign up</a>
+    <a class="btn" href="login.html">Log in</a>
+    <a href="account.html" class="nav-auth" data-auth="signed-in" style="display:none">Account</a>
+    <a class="btn" data-auth="signed-in" href="#" onclick="logout(); return false;" style="display:none">Log out</a>
   </nav>
 </aside>
 

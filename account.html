@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Lyrix — Your account</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <link rel="stylesheet" href="assets/css/mobile.css" />
+  <link rel="icon" href="images/favicon.ico" />
+</head>
+<body>
+  <header class="header" id="__header"></header>
+
+  <section class="hero hero--xl">
+    <div class="container">
+      <h1 data-reveal>Your account</h1>
+      <p data-reveal>Manage your subscription and access downloads.</p>
+      <div class="buttons" data-reveal>
+        <a class="btn-secondary" href="plans.html">Change plan</a>
+        <a class="btn" href="download.html">Downloads</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container card">
+      <h3>Profile</h3>
+      <p><strong>Name:</strong> <span id="acc-name">—</span></p>
+      <p><strong>Email:</strong> <span id="acc-email">—</span></p>
+
+      <div style="margin-top:12px">
+        <a class="btn" href="#" onclick="logout(); return false;">Log out</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="__footer"></footer>
+
+  <script src="assets/js/partials.js"></script>
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.1/auth0-spa-js.production.js"></script>
+  <script src="assets/js/auth.js"></script>
+
+  <script>
+    // Se l’utente NON è autenticato, rimandalo alla login
+    document.addEventListener("DOMContentLoaded", async () => {
+      if (!window.auth0Client) return; // attende initAuth
+      const isAuth = await auth0Client.isAuthenticated();
+      if (!isAuth) login("/account.html", "login");
+    });
+  </script>
+</body>
+</html>
