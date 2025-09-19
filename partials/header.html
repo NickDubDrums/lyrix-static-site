@@ -14,14 +14,14 @@
   </nav>
 
   <!-- Desktop right -->
-<div class="nav-actions">
-  <!-- Mostra solo da NON loggato -->
-  <a class="btn" href="login.html" data-auth="signed-out">Log in</a>
+  <div class="nav-actions">
+    <!-- Mostra solo da NON loggato -->
+<a class="btn" href="#" data-auth="signed-out" onclick="login(); return false;">Log in</a>
 
-  <!-- Mostra solo da loggato -->
-  <a href="account.html" class="nav-auth" data-auth="signed-in" style="display:none">Account</a>
-  <a class="btn" data-auth="signed-in" href="#" onclick="logout(); return false;" style="display:none">Log out</a>
-</div>
+    <!-- Mostra solo da loggato -->
+    <a href="account.html" class="nav-auth" data-auth="signed-in" style="display:none">Account</a>
+    <a class="btn" data-auth="signed-in" href="#" onclick="logout(); return false;" style="display:none">Log out</a>
+  </div>
 
 
 
@@ -47,7 +47,7 @@
     <a href="faq.html">FAQ</a>
 
     <hr style="border:0;border-top:1px solid var(--border);margin:8px 0">
-    <a class="btn" href="login.html">Log in</a>
+<a class="btn" href="#" data-auth="signed-out" onclick="login(); return false;">Log in</a>
     <a href="account.html" class="nav-auth" data-auth="signed-in" style="display:none">Account</a>
     <a class="btn" data-auth="signed-in" href="#" onclick="logout(); return false;" style="display:none">Log out</a>
   </nav>
