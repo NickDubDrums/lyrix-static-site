@@ -15,14 +15,15 @@
   
 <section class="hero">
   <div class="container">
-    <h1>Lyrics, Chords and Setlists. In Sync. Everywhere.</h1>
-    <p>Lyrix connects your DAW, plugin and web for reliable, fast shows. No markers, no hassle: one “Lyrix Controller” MIDI track and you’re on-air.</p>
+    <h1>Lyrics, Chords & Setlists—In Sync. Everywhere.</h1>
+    <p>Lyrix connects your DAW, plugin, and web app so lyrics and chords stay perfectly in time—on every device.</p>
     <div class="buttons">
       <a class="btn" href="download.html">Download</a>
       <a class="btn-secondary" href="plans.html">See plans</a>
     </div>
   </div>
 </section>
+
 <section class="work-tiles work">
   <div class="container">
     <h2 data-reveal>What Lyrix brings</h2>
@@ -30,11 +31,14 @@
     <div class="work-tiles-list">
       <!-- Tile 1 -->
       <div class="tile" data-reveal>
-        <div class="tile__media" data-reveal></div>
+      <div class="tile__media" data-reveal>
+        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1600&auto=format&fit=crop" alt="DAW timeline with markers">
+        <div class="media-overlay"></div>
+      </div>
         <div class="tile__content" data-reveal>
-          <div class="eyebrow">Universal MIDI Controller</div>
-          <h3>START/END + CC schema that works across DAWs</h3>
-          <p>Note 97 = START, 96 = END. CC20/52 for Lyrics (14-bit), CC21/53 for Chords (+22 root, +23 quality). Export/import between DAWs.</p>
+          <div class="eyebrow">One universal “Lyrix Controller” MIDI track. That’s it.</div>
+          <h3>One Controller Track for Every DAW</h3>
+          <p>Create a simple START/END + CC controller track once—export/import it between Cubase, Studio One, Ableton, and more.</p>
           <div class="tile__actions">
             <a class="btn-secondary" href="how-it-works.html">See how it works</a>
           </div>
@@ -43,11 +47,14 @@
 
       <!-- Tile 2 (auto invert su desktop) -->
       <div class="tile" data-reveal>
-        <div class="tile__media" data-reveal></div>
+      <div class="tile__media" data-reveal>
+        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1600&auto=format&fit=crop" alt="Setlist and transport behaviors">
+        <div class="media-overlay"></div>
+      </div>
         <div class="tile__content" data-reveal>
           <div class="eyebrow">Live-Proof</div>
           <h3>Loop, Next, Stop — precise behaviors</h3>
-          <p>Transport via MMC Play/Stop (optional SPP/Locate). Multi-device sync with instant updates.</p>
+          <p>Decide per song: Loop, jump to the next, or stop at end. MMC transport supported.</p>
           <div class="tile__actions">
             <a class="btn" href="download.html">Download</a>
             <a class="btn-secondary" href="features.html">All features</a>
@@ -57,11 +64,14 @@
 
       <!-- Tile 3 -->
       <div class="tile" data-reveal>
-        <div class="tile__media" data-reveal></div>
+<div class="tile__media" data-reveal>
+  <img src="https://images.pexels.com/photos/257904/pexels-photo-257904.jpeg?auto=compress&cs=tinysrgb&w=1600&q=80" alt="Setlist and transport behaviors">
+  <div class="media-overlay"></div>
+</div>
         <div class="tile__content" data-reveal>
           <div class="eyebrow">Web App & Host</div>
-          <h3>QR join and responsive split view</h3>
-          <p>Lyrics & Chords in sync on phones, tablets, laptops. Future screenshots/video will live here.</p>
+          <h3>Real-Time Sync Across Unlimited Devices</h3>
+          <p>Open the local server, scan the auto-generated QR, and connect as many phones, tablets, and laptops as you want—lyrics & chords stay locked in time.</p>
           <div class="tile__actions">
             <a class="btn-secondary" href="faq.html">FAQ</a>
           </div>
@@ -76,15 +86,15 @@
   <div class="container grid grid-3">
     <div class="card" data-reveal>
       <h3>Universal</h3>
-      <p>Export/import the same MIDI controller track between Cubase, Studio One, Ableton and more.</p>
+      <p>Create, import, export songs and setlists. Reorder your show at any time.</p>
     </div>
     <div class="card" data-reveal>
       <h3>Live-proof</h3>
       <p>Precise START/END, behaviors (Loop, Next, Stop) and transport via MMC.</p>
     </div>
     <div class="card" data-reveal>
-      <h3>Multi-device</h3>
-      <p>Real-time Lyrics & Chords on phones, tablets and laptops.</p>
+      <h3>Performance View</h3>
+      <p>Lyrics & Chords in sync with per-user customization and split-screen options for singers and players.</p>
     </div>
   </div>
 </section>
@@ -93,6 +103,14 @@
   <script src="assets/js/partials.js"></script>
   <script src="https://cdn.auth0.com/js/auth0-spa-js/2.1/auth0-spa-js.production.js"></script>
   <script src="assets/js/auth.js"></script>
+  <script>
+  document.querySelectorAll('.tile__media video').forEach(v => {
+    const tryPlay = () => v.play().catch(() => {/* se fallisce, resta il poster */});
+    if (v.readyState >= 2) tryPlay();
+    else v.addEventListener('canplay', tryPlay, { once: true });
+  });
+</script>
+
 
 </body>
 </html>

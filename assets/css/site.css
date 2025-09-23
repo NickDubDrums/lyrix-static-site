@@ -8,3 +8,59 @@
 .btn-secondary:hover{ background:#151822 }
 
 @media (max-width:900px){.download-grid{grid-template-columns:1fr}}
+
+/* Media strip (images & loop videos) */
+.media-strip {
+  margin: 48px auto;
+  max-width: 1200px;
+  padding: 0 16px;
+}
+.media-strip .grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+.media-strip .card {
+  grid-column: span 4;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.media-strip .card .media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.media-strip .card img,
+.media-strip .card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.media-strip .card .caption {
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+/* Video: no controls, autoplay, subtle rounding */
+.video-loop {
+  border-radius: 0;
+}
+.video-loop::-webkit-media-controls {
+  display: none !important;
+}
+
+/* Mobile stacking */
+@media (max-width: 900px) {
+  .media-strip .card { grid-column: span 6; }
+}
+@media (max-width: 600px) {
+  .media-strip .card { grid-column: span 12; }
+  .video-loop.blur-mobile {
+    filter: blur(2px);
+  }
+}

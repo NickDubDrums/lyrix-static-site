@@ -157,3 +157,28 @@ p{color:var(--muted)}
 
 .nav-auth { color: var(--muted); padding: 8px 10px; }
 .nav-auth:hover { color: #fff; }
+
+
+/* === Media inside .tile__media === */
+.tile__media {
+  position: relative;
+  overflow: hidden;
+}
+.tile__media img,
+.tile__media video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.tile__media .media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #0b0b10ae, #23283468); /* accent #715ee8 @ low opacity */
+  pointer-events: none;
+}
+
+/* Mobile: video leggermente blur per non distrarre */
+@media (max-width: 600px){
+  .tile__media video.blur-mobile { filter: blur(2px); }
+}

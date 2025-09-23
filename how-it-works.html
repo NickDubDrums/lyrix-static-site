@@ -15,8 +15,8 @@
 
 <section class="hero">
   <div class="container">
-    <h1 data-reveal>From MIDI to synced screens, step by step</h1>
-    <p data-reveal>Create one ‘Lyrix Controller’ MIDI track, start the Host or Bridge plugin, scan the QR—your devices follow in lockstep.</p>
+    <h1 data-reveal>From MIDI to Synced Screens—Step by Step</h1>
+    <p data-reveal>Create one “Lyrix Controller” MIDI track with START/END and CCs. Launch Lyrix Host or the Bridge plugin, open the web app, scan the QR. All your devices follow.</p>
     <div class="buttons" data-reveal>
       <a class="btn" href="download.html">Download</a>
       <a class="btn-secondary" href="features.html">Explore features</a>
@@ -31,17 +31,26 @@
     <div class="work-tiles-list">
       <!-- Tile 1 -->
       <div class="tile" data-reveal>
-        <div class="tile__media" data-reveal></div>
+<div class="tile__media" data-reveal>
+  <video autoplay loop muted playsinline preload="metadata">
+    <source src="https://www.pexels.com/it-it/download/video/5659545/" type="video/mp4">
+  </video>
+  <div class="media-overlay"></div>
+</div>
         <div class="tile__content" data-reveal>
           <h3>1. Lyrix Controller</h3>
-        <p><strong>Create</strong> the <em>Lyrix Controller</em> track in your DAW (START/END + CC).</p>
+        <p><strong>Create</strong> the <em>Lyrix Controller</em> track (START/END + CCs).</p>
           
         </div>
       </div>
 
       <!-- Tile 2 (auto invert su desktop) -->
       <div class="tile" data-reveal>
-        <div class="tile__media" data-reveal></div>
+<div class="tile__media" data-reveal>
+  <video class="blur-mobile" autoplay loop muted playsinline preload="metadata">    <source src="https://www.pexels.com/it-it/download/video/4088851/" type="video/mp4">
+  </video>
+  <div class="media-overlay"></div>
+</div>
         <div class="tile__content" data-reveal>
         <!--  <div class="eyebrow">Live-Proof</div>-->
         <h3>2. Lyrix Host (Local Server)</h3>
@@ -52,11 +61,15 @@
 
       <!-- Tile 3 -->
       <div class="tile" data-reveal>
-        <div class="tile__media" data-reveal></div>
+<div class="tile__media" data-reveal>
+  <video class="blur-mobile" autoplay loop muted playsinline preload="metadata">    <source src="https://www.pexels.com/it-it/download/video/18557107/" type="video/mp4">
+  </video>
+  <div class="media-overlay"></div>
+</div>
         <div class="tile__content" data-reveal>
         <!--  <div class="eyebrow">Web App & Host</div>-->
         <h3>3. Web App</h3>
-        <p><strong>Play</strong>. Devices follow in sync.</p>
+        <p><strong>Play</strong>, <strong>Change Setlist Order</strong>, <strong>Ceate Loops</strong>, and all devices follow in sync.</p>
           </div>
         </div>
       </div>
@@ -71,6 +84,14 @@
   <script src="assets/js/partials.js"></script>
   <script src="https://cdn.auth0.com/js/auth0-spa-js/2.1/auth0-spa-js.production.js"></script>
   <script src="assets/js/auth.js"></script>
+  <script>
+  document.querySelectorAll('.tile__media video').forEach(v => {
+    const tryPlay = () => v.play().catch(() => {/* se fallisce, resta il poster */});
+    if (v.readyState >= 2) tryPlay();
+    else v.addEventListener('canplay', tryPlay, { once: true });
+  });
+</script>
+
 
 </body>
 </html>
