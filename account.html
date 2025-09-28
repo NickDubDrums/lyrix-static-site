@@ -10,27 +10,186 @@
   <link rel="icon" href="images/favicon.ico" />
 </head>
 <body>
+
+  
+  <div id="dev-testbar" class="dev-testbar" hidden>
+  <div class="dev-testbar__inner">
+    <strong>Dev test bar</strong>
+    <div class="dev-testbar__group">
+      <span>Plan:</span>
+      <button data-plan="free" class="devbtn">Free</button>
+      <button data-plan="monthly" class="devbtn">Monthly</button>
+      <button data-plan="semiannual" class="devbtn">6 months</button>
+      <button data-plan="annual" class="devbtn">12 months</button>
+      <button data-plan="pro" class="devbtn">Pro Unlimited</button>
+    </div>
+    <button id="devbar-hide" class="devbtn devbtn--ghost">Hide</button>
+  </div>
+</div>
+
   <header class="header" id="__header"></header>
 
-  <section class="hero hero--xl">
-    <div class="container">
-      <h1 data-reveal>Your account</h1>
-      <p data-reveal>Manage your subscription and access downloads.</p>
-      <div class="buttons" data-reveal>
-        <a class="btn-secondary" href="plans.html">Change plan</a>
-        <a class="btn" href="download.html">Downloads</a>
-      </div>
+  <!-- Hero più compatto per dare spazio alla dashboard -->
+<section class="hero hero--lg">
+  <div class="container">
+    <h1 data-reveal>Your account</h1>
+    <p data-reveal>
+      Welcome back, <span id="acc-hello-name">friend</span> — manage your plan, profile, and downloads.
+    </p>
+    <div class="buttons" data-reveal>
+      <a class="btn-secondary" href="plans.html">Change plan</a>
+      <a class="btn" href="download.html">Downloads</a>
     </div>
-  </section>
+  </div>
+</section>
 
+
+  <!-- Dashboard -->
   <section class="section">
-    <div class="container card">
-      <h3>Profile</h3>
-      <p><strong>Name:</strong> <span id="acc-name">—</span></p>
-      <p><strong>Email:</strong> <span id="acc-email">—</span></p>
+    <div class="container account-grid">
+      <!-- Nav laterale -->
+      <aside class="account-nav card reveal" aria-label="Account sections">
+        <button class="account-tab-btn is-active" data-tab="plan">
+          <span>Your plan</span>
+        </button>
+        <button class="account-tab-btn" data-tab="profile">
+          <span>Your profile</span>
+        </button>
+        <button class="account-tab-btn" data-tab="security">
+          <span>Security</span>
+        </button>
+        <button class="account-tab-btn" data-tab="newsletter">
+          <span>Newsletter</span>
+        </button>
+        <button class="account-tab-btn" data-tab="control">
+          <span>Account control</span>
+        </button>
+        <button class="account-tab-btn" data-tab="support">
+          <span>Support</span>
+        </button>
 
-      <div style="margin-top:12px">
-        <a class="btn" href="#" onclick="logout(); return false;">Log out</a>
+        <hr class="sep" />
+        <a class="btn" href="#" id="btn-logout">Log out</a>
+      </aside>
+
+      <!-- Contenuto tab -->
+      <div class="account-content">
+        <!-- YOUR PLAN -->
+        <div id="tab-plan" class="tab card reveal is-active" role="tabpanel" aria-labelledby="tab-btn-plan">
+          <h3>Your plan</h3>
+          <p class="muted">See your current subscription and manage it.</p>
+
+          <div class="plan-summary">
+            <div>
+              <div class="plan-name" id="plan-name">Free</div>
+              <div class="plan-meta" id="plan-meta">No active subscription</div>
+            </div>
+            <div class="plan-actions">
+              <a class="btn-secondary" href="plans.html">Change / Upgrade</a>
+              <a class="btn" href="download.html">Go to Downloads</a>
+            </div>
+          </div>
+
+          <div class="inline-tip">
+            Tip: come back here after purchase to see your plan status updated.
+          </div>
+        </div>
+
+<!-- PROFILE -->
+<div id="tab-profile" class="tab card reveal" role="tabpanel">
+  <h3>Your profile</h3>
+  <p class="muted">Email comes from Google; you can change Username, First and Last name here.</p>
+
+  <form id="profile-form" class="info-grid">
+    <div>
+      <label for="pf-email">Email</label>
+      <input id="pf-email" name="email" type="email" autocomplete="email" disabled />
+    </div>
+    <div>
+      <label for="pf-username">Username</label>
+      <input id="pf-username" name="nickname" type="text" autocomplete="nickname" />
+    </div>
+    <div>
+      <label for="pf-given">First name</label>
+      <input id="pf-given" name="given_name" type="text" autocomplete="given-name" />
+    </div>
+    <div>
+      <label for="pf-family">Last name</label>
+      <input id="pf-family" name="family_name" type="text" autocomplete="family-name" />
+    </div>
+  </form>
+
+  <div class="buttons">
+    <button class="btn" id="btn-profile-save" disabled>Save changes</button>
+    <button class="btn-secondary" id="btn-profile-reset" disabled>Reset</button>
+  </div>
+
+  <div id="profile-toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+</div>
+
+        <!-- SECURITY -->
+        <div id="tab-security" class="tab card reveal" role="tabpanel">
+          <h3>Security</h3>
+          <p class="muted">Manage sign-in settings.</p>
+
+          <div class="security-actions">
+            <div class="row">
+              <div>
+                <strong>Password</strong>
+                <div class="muted">Reset your password via Auth0 Universal Login.</div>
+              </div>
+              <div>
+                <a class="btn" id="btn-reset-password" href="#">Reset password</a>
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <strong>Email address</strong>
+                <div class="muted">Email changes will be supported soon from here.</div>
+              </div>
+              <div>
+                <button class="btn-secondary" disabled title="Coming soon">Change email (soon)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NEWSLETTER -->
+        <div id="tab-newsletter" class="tab card reveal" role="tabpanel">
+          <h3>Newsletter</h3>
+          <p class="muted">Get updates about Lyrix features and releases.</p>
+
+          <label class="switch">
+            <input type="checkbox" id="nl-optin" />
+            <span class="slider"></span>
+            <span class="switch-label">I want to receive product updates</span>
+          </label>
+
+          <div class="inline-tip">You can unsubscribe any time. For now this preference is saved locally; we’ll sync it to the server later.</div>
+        </div>
+
+        <!-- ACCOUNT CONTROL -->
+        <div id="tab-control" class="tab card reveal" role="tabpanel">
+          <h3>Account control</h3>
+          <p class="muted">Danger zone.</p>
+
+          <div class="danger">
+            <p><strong>Delete account</strong></p>
+            <p class="muted">Account deletion will require email verification. This action is irreversible.</p>
+            <button class="btn-secondary" disabled title="Coming soon">Delete my account (soon)</button>
+          </div>
+        </div>
+
+        <!-- SUPPORT -->
+        <div id="tab-support" class="tab card reveal" role="tabpanel">
+          <h3>Support</h3>
+          <p class="muted">Support is prioritized for users with an active subscription.</p>
+
+          <div id="support-box" class="support-box">
+            <!-- Popolato via JS in base al piano -->
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -40,11 +199,12 @@
   <script src="assets/js/partials.js"></script>
   <script src="https://cdn.auth0.com/js/auth0-spa-js/2.1/auth0-spa-js.production.js"></script>
   <script src="assets/js/auth.js"></script>
+  <script src="assets/js/account.js"></script>
 
   <script>
-    // Se l’utente NON è autenticato, rimandalo alla login
+    // Se l’utente non è autenticato, rimandalo alla login
     document.addEventListener("DOMContentLoaded", async () => {
-      if (!window.auth0Client) return; // attende initAuth
+      if (!window.auth0Client) return;
       const isAuth = await auth0Client.isAuthenticated();
       if (!isAuth) login("/account.html", "login");
     });
