@@ -1,6 +1,6 @@
 // === Auth0 config ===
 // Usa qui il TUO custom domain appena creato (es.: "auth.lyrix.app")
-const AUTH0_DOMAIN = "auth.lyrix.app"; // <-- cambia da dev-.... a auth.lyrix.app
+const AUTH0_DOMAIN = "dev-5k0si7uyk1eqj3k0.us.auth0.com";
 const AUTH0_CLIENT_ID = "nNH76YBCpJG8UiFlSxgdcK0yvKfIg1IW";
 
 // === Stato globale ===

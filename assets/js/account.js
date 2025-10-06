@@ -101,6 +101,9 @@ async function setupProfile() {
   }
 
   const user = await auth0Client.getUser();
+  console.log("[auth] raw user:", user);
+  console.log("[auth] mapped claims:", userToProfile(user));
+
   const claims = userToProfile(user);
 
   // Greeting
@@ -281,3 +284,8 @@ function setupDevBar() {
     await setupProfile();
   });
 })();
+
+// Se Auth0 finisce di inizializzarsi dopo il DOM, riproviamo qui
+document.addEventListener("auth:ready", async () => {
+  try { await setupProfile(); } catch (e) { console.warn(e); }
+});
