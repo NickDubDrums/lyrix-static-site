@@ -88,3 +88,50 @@ function setupScrollReveal() {
 
 
 document.addEventListener('DOMContentLoaded', loadPartials);
+
+
+
+(() => {
+  const R = 180; // raggio (px) entro cui il BORDO “sente” il mouse anche da fuori
+  let raf = null;
+
+  const $spots = () => document.querySelectorAll('.card.spotlight');
+
+  const updateAll = (mx, my) => {
+    $spots().forEach(el => {
+      const rect = el.getBoundingClientRect();
+
+      // punto più vicino al mouse CLAMPATO dentro il box
+      const nx = Math.max(rect.left, Math.min(mx, rect.right));
+      const ny = Math.max(rect.top,  Math.min(my, rect.bottom));
+
+      // distanza mouse -> box (0 se dentro)
+      const dx = mx < rect.left   ? rect.left - mx  : (mx > rect.right  ? mx - rect.right : 0);
+      const dy = my < rect.top    ? rect.top  - my  : (my > rect.bottom ? my - rect.bottom: 0);
+      const dist = Math.hypot(dx, dy);
+
+      // coord locali per i gradient (in px dentro l’elemento)
+      const lx = nx - rect.left;
+      const ly = ny - rect.top;
+
+      el.style.setProperty('--mx', lx + 'px');
+      el.style.setProperty('--my', ly + 'px');
+
+      // opacità del glow bordo in base alla distanza (fade fuori fino a R)
+      const t = Math.max(0, 1 - dist / R);
+      el.style.setProperty('--bop', t.toFixed(3));
+    });
+  };
+
+  document.addEventListener('pointermove', (e) => {
+    const { clientX: mx, clientY: my } = e;
+    if (raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => updateAll(mx, my));
+  }, { passive: true });
+
+  // quando il puntatore esce dalla finestra: spegni i bordi
+  document.addEventListener('pointerleave', () => {
+    $spots().forEach(el => el.style.setProperty('--bop', '0'));
+  }, true);
+})();
+

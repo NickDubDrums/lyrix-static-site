@@ -223,3 +223,68 @@ p{color:var(--muted)}
     filter: blur(4px) brightness(0.20);
     transform: scale(1.03);
   }
+
+
+  /* === Spotlight hover (interno + bordo che “sente” il mouse anche da fuori) === */
+.card.spotlight {
+  position: relative;
+  border: 1px solid transparent;
+  border-radius: var(--radius, 14px);
+  overflow: hidden;
+  background: linear-gradient(180deg, #141417, #101014) padding-box;
+  transition: border-color .2s ease, box-shadow .2s ease;
+  will-change: background-position, background-image;
+}
+
+/* Luce morbida INTERNA che segue il mouse (si accende solo in hover/focus) */
+.card.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  /* usa il colore di foreground del sito */
+  background:
+    radial-gradient(
+      var(--innerR, 220px) circle at var(--mx, -200px) var(--my, -200px),
+      color-mix(in srgb, var(--accent) 25%, transparent) 0%,
+      transparent 60%
+    );
+  pointer-events: none;
+  opacity: var(--op, 0);
+  transition: opacity .22s ease;
+}
+
+/* Glow SOLO sul bordo: layer separato con mask ad anello */
+.card.spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      var(--borderR, 160px) circle at var(--mx, -200px) var(--my, -200px),
+      color-mix(in srgb, var(--accent) 60%, transparent) 0%,
+      transparent 65%
+    );
+  padding: 1px; /* spessore del bordo visibile */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: var(--bop, 0); /* controllata via JS in base alla distanza */
+  transition: opacity .2s ease;
+}
+
+/* Hover/focus: accendi la luce interna e leggero accent sul bordo */
+.card.spotlight:is(:hover, :focus-within) {
+  --op: 0.3;
+  border-color: color-mix(in srgb, var(--accent), transparent 70%);
+  box-shadow: inset 0 1px 0 #ffffff0a;
+}
+
+/* (Opzionale) Se avevi .card:hover con ombre molto forti, tienile soft sulle spotlight */
+.card.spotlight:hover {
+  box-shadow: inset 0 1px 0 #ffffff08;
+}
